@@ -8,6 +8,7 @@ import os
 import torch
 import torch.backends.cudnn
 import torch.utils.data
+import utils.binvox_rw as binvox_rw
 
 import utils.binvox_visualization
 import utils.data_loaders
@@ -123,6 +124,11 @@ def test_net(cfg,
                 refiner_loss = bce_loss(generated_volume, ground_truth_volume) * 10
             else:
                 refiner_loss = encoder_loss
+
+            with open('/home/user/results/%s.binvox' % taxonomy_id, 'wb') as f:
+                th = 0.5
+                vox = binvox_rw.Voxels(generated_volume.ge(th).cpu().squeeze().numpy(), (32,) * 3, (0,) * 3, 1, 'xyz')
+                vox.write(f)
 
             # Append loss and accuracy to average metrics
             encoder_losses.update(encoder_loss.item())

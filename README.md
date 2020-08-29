@@ -87,6 +87,10 @@ If you want to train/test Pix2Vox-F, you need to checkout to `Pix2Vox-F` branch 
 git checkout -b Pix2Vox-F origin/Pix2Vox-F
 ```
 
+## View .binvox
+
+  - [viewvox](https://www.patrickmin.com/viewvox/)
+
 ## License
 
 This project is open sourced under MIT license.
